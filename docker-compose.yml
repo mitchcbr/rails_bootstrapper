@@ -1,0 +1,29 @@
+---
+services:
+  rbs-db:
+    image: postgres
+    container_name: rbs-db
+    env_file: .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pgsql:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: $DB_NAME
+      POSTGRES_USER: $DB_USER
+      POSTGRES_PASSWORD: $DB_PASS
+  rbs-app:
+    build: .
+    container_name: rbs-app
+    env_file: .env
+    environment:
+      - DB_HOST=rbs-db
+    volumes:
+      - ~/.ssh/id_rsa:/home/rails/.ssh/id_rsa 
+      - ~/.ssh/id_rsa.pub:/home/rails/.ssh/id_rsa.pub
+      # - ./entrypoint.sh:/entrypoint.sh
+    ports:
+      - $APP_PORT:$APP_PORT
+    stop_grace_period: 1s
+    command: bin/dev -b 0.0.0.0 -p $APP_PORT
+...
