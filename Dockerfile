@@ -15,9 +15,13 @@ RUN apt-get update -qq \
       gcc \
       git \
       gh \
+      libffi-dev \
       libpq-dev \
       libpq5 \
+      libssl-dev \
       libvips \
+      libyaml-dev \
+      libz-dev \
       nano \
       net-tools \
       pkg-config \
@@ -27,6 +31,7 @@ RUN apt-get update -qq \
     && rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 RUN gem install rails \
+  && gem install foreman \
   && gem update --system
 
 COPY entrypoint.sh database.yml /
