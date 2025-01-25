@@ -5,9 +5,10 @@ set -e
 SSH_KEY_PATH=~/.ssh/id_rsa
 APP_DIR=/rails_root
 
-bundle config path ~/.gem/ruby
+git remote set-url origin "${REPO_PATH}"
 git config --global user.email "${GITHUB_EMAIL}"
 git config --global user.name "${GITHUB_NAME}"
+bundle config path ~/.gem/ruby
 
 if ! git ls-remote "${REPO_PATH}" >/dev/null 2>&1; then
   echo "Either the specified repository path, ${REPO_PATH}, does not exist, or the given SSH key does not have access to it."
@@ -25,7 +26,7 @@ if [ -z "$(ls -A .)" ]; then
   git clone "${REPO_PATH}" .
   
   if [ ! -s Gemfile ]; then
-    echo "Gemfile not found. Initializing Rails app..."
+    echo "Gemfile not found. Initializing project..."
     eval "${RAILS_NEW_CMD}"
 
     echo "Creating database..."
@@ -33,7 +34,7 @@ if [ -z "$(ls -A .)" ]; then
     bin/rails db:create
 
     echo "Pushing initial commit to ${REPO_PATH}..."
-    git add .
+    git add -A
     git commit -m "initialized rails app"
     git push -u origin main
   fi

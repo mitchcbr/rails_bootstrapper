@@ -1,0 +1,5 @@
+- Clone repo
+- Set the remote origin
+- Update env vars
+    - Set the repo
+- docker compose up

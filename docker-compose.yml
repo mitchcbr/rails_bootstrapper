@@ -21,6 +21,7 @@ services:
     volumes:
       - ~/.ssh/id_rsa:/home/rails/.ssh/id_rsa 
       - ~/.ssh/id_rsa.pub:/home/rails/.ssh/id_rsa.pub
+      - ./.git:/rails_root/.git
       - ./.gem:/home/rails/.gem
     ports:
       - $PORT:$PORT
