@@ -28,23 +28,21 @@ if ! git ls-remote "${REPO_PATH}" >/dev/null 2>&1; then
 fi
 
 cd "${APP_DIR}"
-if [ -z "$(ls -A .)" ]; then
-  echo "Cloning ${REPO_PATH} into $(pwd)..."
-  git clone "${REPO_PATH}" .
-  
-  if [ ! -s Gemfile ]; then
-    echo "Gemfile not found. Initializing project with '${RAILS_NEW_CMD}'..."
-    eval "${RAILS_NEW_CMD}"
+echo "Cloning ${REPO_PATH} into $(pwd)..."
+git clone "${REPO_PATH}" .
 
-    echo "Creating database..."
-    cat /database.yml > "${APP_DIR}/config/database.yml"
-    bin/rails db:create
+if [ ! -s Gemfile ]; then
+  echo "Gemfile not found. Initializing project with '${RAILS_NEW_CMD}'..."
+  eval "${RAILS_NEW_CMD}"
 
-    echo "Pushing initial commit to ${REPO_PATH}..."
-    git add -A
-    git commit -m "initialized rails app"
-    git push -u origin main
-  fi
+  echo "Creating database..."
+  cat /database.yml > "${APP_DIR}/config/database.yml"
+  bin/rails db:create
+
+  echo "Pushing initial commit to ${REPO_PATH}..."
+  git add -A
+  git commit -m "initialized rails app"
+  git push -u origin main
 fi
 
 echo "Running bundle install..."
