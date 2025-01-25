@@ -28,6 +28,9 @@ if ! git ls-remote "${REPO_PATH}" >/dev/null 2>&1; then
 fi
 
 cd "${APP_DIR}"
+echo "Clearing ${APP_DIR}..."
+ls -A1 | xargs rm -rf
+
 echo "Cloning ${REPO_PATH} into $(pwd)..."
 git clone "${REPO_PATH}" .
 
