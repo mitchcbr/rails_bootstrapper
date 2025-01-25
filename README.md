@@ -1,5 +1,18 @@
+- Have docker engine installed
+- Create a new project, coffeebean, in github
 - Clone repo
-- Set the remote origin
+  - git clone git@github.com:mitchcbr/rails_bootstrapper.git coffeebean
 - Update env vars
-    - Set the repo
+    - cp .env.sample .env
+    - REPO_PATH should match your new project's path on github
+    - GITHUB_EMAIL should match your github email address
+    - GITHUB_NAME should match your github name
+    - DB_NAME will be the name of the database that's created
+    - DB_USER will be the username used to login to the database
+    - DB_PASS will be the password for DB_USER
+    - RAILS_NEW_CMD will be the command used to initialize the Rails app; this will only be run if there is no Gemfile in the project
+    - BINDING is the address the app will be served on; if this is not specified, it will default to localhost, which isn't reachable b/c it's in a container
+    - PORT is the port the app will be served on; if this is not specified, it will default to 3000
 - docker compose up
+- optional: rename the services in the docker-compose.yml file, or they might conflict with other projects
+- a word on mounted volumes...

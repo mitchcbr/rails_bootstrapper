@@ -5,6 +5,13 @@ set -e
 SSH_KEY_PATH=~/.ssh/id_rsa
 APP_DIR=/rails_root
 
+if [ -z "${REPO_PATH}" ] || [ -z "${GITHUB_EMAIL}" ] || [ -z "${GITHUB_NAME}" ] || [ -z "${RAILS_NEW_CMD}" ]; then
+  echo "ERROR: One or more of the following environment variables are not set in .env:"
+  echo "REPO_PATH, GITHUB_EMAIL, GITHUB_NAME, RAILS_NEW_CMD"
+  echo "See README.md and .env.sample for help configuring these values. Exiting."
+  exit 1
+fi
+
 git remote set-url origin "${REPO_PATH}"
 git config --global user.email "${GITHUB_EMAIL}"
 git config --global user.name "${GITHUB_NAME}"
@@ -26,7 +33,7 @@ if [ -z "$(ls -A .)" ]; then
   git clone "${REPO_PATH}" .
   
   if [ ! -s Gemfile ]; then
-    echo "Gemfile not found. Initializing project..."
+    echo "Gemfile not found. Initializing project with '${RAILS_NEW_CMD}'..."
     eval "${RAILS_NEW_CMD}"
 
     echo "Creating database..."
