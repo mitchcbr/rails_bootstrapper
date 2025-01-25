@@ -2,6 +2,7 @@
 - Create a new project, coffeebean, in github
 - Clone repo
   - git clone git@github.com:mitchcbr/rails_bootstrapper.git coffeebean
+  - cd coffeebean
 - Update env vars
     - cp .env.sample .env
     - REPO_PATH should match your new project's path on github
