@@ -10,13 +10,13 @@ The entrypoint will set your upstream origin, initialize the Rails app, commit a
 
 ___
 
-**Prerequisites:**
+**Prerequisites**
 - [Install Docker Engine](https://docs.docker.com/engine/install/).
 - Have a [Github](https://github.com) account.
 
 ___
 
-**Usage:**
+**Usage**
  1. Create a new repository in github.
  2. Clone this repository. It's recommended to adjust the 'my_app' folder name to match your repository name.
 	`git clone git@github.com:mitchcbr/rails_bootstrapper.git my_app && cd my_app`
@@ -39,7 +39,7 @@ ___
 
 ___
 
-**A word on mounted volumes:**
+**A Word on Mounted Volumes**
 - Mounting your ssh key to the container allows you to interact with the Github repo directly from the container.
 - Mounting the whole local project folder allows you to also push changes from your local console.
 - Database files are stored in pgsql and ignored by .gitignore.
