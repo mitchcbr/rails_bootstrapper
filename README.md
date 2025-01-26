@@ -8,11 +8,13 @@ I've always found the process of standing up a new containerized Rails applicati
 
 The entrypoint will set your upstream origin, initialize the Rails app, commit and push the changes to your repository, and start the containerized application with bin/dev. By default, the app will use a Postgres backend (also provisioned by docker compose) and Tailwind CSS.
 
+___
 
 **Prerequisites:**
 - [Install Docker Engine](https://docs.docker.com/engine/install/).
 - Have a [Github](https://github.com) account.
 
+___
 
 **Usage:**
  1. Create a new repository in github.
