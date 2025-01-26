@@ -33,7 +33,7 @@ if [ ! -s Gemfile ] && [ ! -d app ]; then
   eval "${RAILS_NEW_CMD}"
 
   echo "Creating database..."
-  cat /database.yml > "config/database.yml"
+  cat /database.yml > config/database.yml
   bin/rails db:create
 
   echo "Pushing initial commit to ${REPO_PATH}..."

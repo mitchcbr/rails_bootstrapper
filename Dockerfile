@@ -36,7 +36,7 @@ RUN gem install rails \
 
 # The database.yml dance is a bit unnecessary, but leaving it in
 # place in case the current folder isn't mounted as a volume.
-COPY entrypoint.sh database.yml.template /
+COPY entrypoint.sh database.yml /
 
 RUN useradd rails --create-home --shell /bin/bash \
   && chown -R rails:rails . \
