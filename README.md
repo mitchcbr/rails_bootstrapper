@@ -1,6 +1,6 @@
 # Welcome to rails_bootstrapper!
 
-I've always found the process of standing up a new Rails application in a development container to be a bit awkward, so I created this tool to simplfy the process. The basic flow is:
+I've always found the process of standing up a new containerized Rails application for development to be a bit awkward, so I created this tool to simplfy the process. The basic flow is:
 - Create a new repository on Github.
 - Clone this repo into a new folder.
 - Update .env with your environment variables.
