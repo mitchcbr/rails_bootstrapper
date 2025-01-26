@@ -21,7 +21,7 @@ services:
     volumes:
       - ~/.ssh/id_rsa:/home/rails/.ssh/id_rsa 
       - ~/.ssh/id_rsa.pub:/home/rails/.ssh/id_rsa.pub
-      - ./.gem:/home/rails/.gem
+      - ./:/rails_root
     ports:
       - $PORT:$PORT
     stop_grace_period: 2s
