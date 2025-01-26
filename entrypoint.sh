@@ -36,16 +36,18 @@ if [ ! -s Gemfile ] && [ ! -d app ]; then
   cat /database.yml > config/database.yml
   bin/rails db:create
 
-  echo "Pushing initial commit to ${REPO_PATH}..."
+  echo "Resetting commit history..."
   printf "\n# Ignore vim swp files\n*.swp" >> .gitignore
-  # git checkout --orphan tmp_branch
+  git checkout --orphan tmp_branch
   git add -A
   git commit -m "initialized rails app"
-  # git branch -D main
-  # git branch -m main
+  git branch -D main
+  git branch -m main
+
+  echo "Pushing initial commit to ${REPO_PATH}..."
   git push -f origin main
 else
-  echo "Found an 'app' folder or a non-empty Gemfile; skipping app initialization."
+  echo "Found existing application; skipping initialization."
 fi
 
 echo "Running bundle install..."
