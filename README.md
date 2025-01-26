@@ -1,8 +1,8 @@
 # Welcome to rails_bootstrapper!
 
 I've always found the process of standing up a new Rails application in a development container to be a bit awkward, so I created this tool to simplfy the process. The basic flow is:
-- Clone this repo into a new folder.
 - Create a new repository on Github.
+- Clone this repo into a new folder.
 - Update .env with your environment variables.
 - Run docker compose up.
 
@@ -13,12 +13,9 @@ I've always found the process of standing up a new Rails application in a develo
 
 
 **Usage:**
- 1. Clone this repository.
-	```
-	git clone git@github.com:mitchcbr/rails_bootstrapper.git my_app
-	cd my_app
-	```
- 2. Create a new repository in github.
+ 1. Create a new repository in github.
+ 2. Clone this repository. It's recommended to adjust the 'my_app' folder name to match your repository name.
+	`git clone git@github.com:mitchcbr/rails_bootstrapper.git my_app && cd my_app`
  3. Copy .env.sample to .env.
 	`cp .env.sample .env`
  4. Update the environment variable values.
