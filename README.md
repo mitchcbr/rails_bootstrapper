@@ -1,19 +1,39 @@
-- Have docker engine installed
-- Create a new project, coffeebean, in github
-- Clone repo
-  - git clone git@github.com:mitchcbr/rails_bootstrapper.git coffeebean
-  - cd coffeebean
-- Update env vars
-    - cp .env.sample .env
-    - REPO_PATH should match your new project's path on github
-    - GITHUB_EMAIL should match your github email address
-    - GITHUB_NAME should match your github name
-    - DB_NAME will be the name of the database that's created
-    - DB_USER will be the username used to login to the database
-    - DB_PASS will be the password for DB_USER
-    - RAILS_NEW_CMD will be the command used to initialize the Rails app; this will only be run if there is no Gemfile in the project
-    - BINDING is the address the app will be served on; if this is not specified, it will default to localhost, which isn't reachable b/c it's in a container
-    - PORT is the port the app will be served on; if this is not specified, it will default to 3000
-- docker compose up
-- optional: rename the services in the docker-compose.yml file, or they might conflict with other projects
-- a word on mounted volumes...
+# Welcome to rails_bootstrapper!
+
+blurb
+
+**Prerequisites:**
+- [Install Docker Engine](https://docs.docker.com/engine/install/).
+- Have a [Github](https://github.com) account.
+
+
+**Usage:**
+
+ 1. Create a new project in github.
+ 2. Clone this repository.
+	```
+	git clone git@github.com:mitchcbr/rails_bootstrapper.git my_app
+	cd my_app
+	```
+
+ 3. Copy .env.sample to .env.
+	`cp .env.sample .env`
+ 4. Update the environment variable values.
+    - *REPO_PATH:* This is where the new app will be pushed. It should match your new project's path on github.
+    - *GITHUB_EMAIL:* This should match your Github email address.
+    - *GITHUB_NAME:* Your first and last name on your Github account.
+    - *DB_NAME:* This will be the name of the database that's created. The default should work fine.
+    - *DB_USER:* This will be the username for the database. The default should work fine.
+    - *DB_PASS:* This will be the password for DB_USER.
+    - *RAILS_NEW_CMD:* If an existing application is not found by the entrypoint, a new app will be initialized with this command. If you make changes here, there are likely to be other changes needed in other files. For example, if you choose a different database, the docker-compose.yml will need to be updated so that it no longer provisions a Postgres database.
+    - *BINDING:* The address the app will be served on. If this is not specified, Foreman will default to localhost, which isn't accessible from outside the container. It's recommended to set this to '0.0.0.0' while having also having a network firewall to protect your app from unauthorized activity.
+    - *PORT:* The port the app will be served on. If this is not specified, it will default to 3000.
+ 5. Stand up the application.
+`docker compose up`
+
+	NOTE: If no 'Gemfile' or 'app' directory is found locally when the entrypoint is run, it will initialize a new Rails app and force push the changes to the remote repository, overwriting everything there! **Therefore, do not point the REPO_PATH variable at a repository containing anything you wish to keep.**
+
+6. You should now be able to use your preferred IDE to make changes to your app, and changes can be pushed to the repository from locally or within the container.
+
+7. Optional: Rename the services in the docker-compose.yml file, or they might conflict with other projects.
+
