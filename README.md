@@ -37,6 +37,13 @@ ___
 
 	NOTE: If no 'Gemfile' or 'app' directory is found locally when the entrypoint is run, it will initialize a new Rails app and force push the changes to the remote repository, overwriting everything there! **Therefore, do not point the REPO_PATH variable at a repository containing anything you wish to keep.**
 
-6. You should now be able to use your preferred IDE to make changes to your app, and changes can be pushed to the repository from locally or within the container.
+___
 
-7. Optional: Rename the services in the docker-compose.yml file, or they might conflict with other projects.
+**A word on mounted volumes:**
+- Mounting your ssh key to the container allows you to interact with the Github repo directly from the container.
+- Mounting the whole local project folder allows you to also push changes from your local console.
+- Database files are stored in pgsql and ignored by .gitignore.
+
+7. You should now be able to use your preferred IDE to make changes to your app, and changes can be pushed to the repository from locally or within the container.
+
+8. Optional: Rename the services in the docker-compose.yml file, or they might conflict with other projects.
