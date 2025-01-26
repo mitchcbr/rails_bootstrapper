@@ -4,7 +4,7 @@ I've always found the process of standing up a new containerized Rails applicati
 - Create a new repository on Github.
 - Clone this repo into a new folder.
 - Update .env with your environment variables.
-- Run docker compose up.
+- Run docker compose.
 
 The entrypoint will set your upstream origin, initialize the Rails app, commit and push the changes to your repository, and start the containerized application with bin/dev. By default, the app will use a Postgres backend (also provisioned by docker compose) and Tailwind CSS.
 
@@ -33,7 +33,7 @@ ___
     - *BINDING:* The address the app will be served on. If this is not specified, Foreman will default to localhost, which isn't accessible from outside the container. It's recommended to set this to '0.0.0.0' while having also having a network firewall to protect your app from unauthorized activity.
     - *PORT:* The port the app will be served on. If this is not specified, it will default to 3000.
  5. Initialize and start the application.
-`docker compose up`
+`docker compose up --build -d`
 
 	NOTE: If no 'Gemfile' or 'app' directory is found locally when the entrypoint is run, it will initialize a new Rails app and force push the changes to the remote repository, overwriting everything there! **Therefore, do not point the REPO_PATH variable at a repository containing anything you wish to keep.**
 
